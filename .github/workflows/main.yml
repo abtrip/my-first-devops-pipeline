@@ -1,1 +1,15 @@
 
+name: CI Pipeline
+on: [push]  # This "triggers" the pipeline on every code push
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Run Test
+        run: python -c "from app import hello; assert hello() == 'Hello, DevOps!'"
